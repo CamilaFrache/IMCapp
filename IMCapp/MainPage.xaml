@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IMCapp.MainPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor= "#EDDDD4" >
+
+    <ContentPage.Resources>
+        <Color x:Key="SliderColor">#6C9A8B</Color>
+        <Color x:Key="TitleColor">#4A5759 </Color>
+        <Color x:Key="LabelColor">#C44536 </Color>
+
+        <Style x:Key="StyleLabel" TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="TextColor" Value="{StaticResource LabelColor}"/>
+        </Style>
+
+        <Style 
+            x:Key="TitleStyle"
+            TargetType="Label"
+            BasedOn="{StaticResource StyleLabel}">
+            <Setter Property="FontSize" Value="Header"/>
+            <Setter Property="Padding" Value="40"/>
+        </Style>
+
+        <Style
+            x:Key="ValueStyle"
+            BasedOn="{StaticResource StyleLabel}"
+            TargetType="Label">
+            <Setter Property="FontSize" Value="Title"/>
+            <Setter Property="TextColor" Value="{StaticResource LabelColor}"/>
+        </Style>
+
+        <Style
+            TargetType="Slider">
+            <Setter Property="ThumbColor" Value="{StaticResource SliderColor}"/>
+            <Setter Property="MinimumTrackColor" Value="{StaticResource SliderColor}"/>
+            <Setter Property="MaximumTrackColor" Value="{StaticResource SliderColor}"/>
+
+        </Style>
+    </ContentPage.Resources>
+
+    <FlexLayout 
+        Padding="40"
+        Direction="Column"
+        JustifyContent="SpaceEvenly">
+
+        <StackLayout>
+            <Label 
+                Style="{StaticResource TitleStyle}"
+                Text="Altura"/>
+            <Label
+                Style="{StaticResource ValueStyle}"
+                Text="{Binding Source={x:Reference SliderHeight}, Path= Value, StringFormat= '{0:F0} cm'}" />
+            <Slider
+                x:Name="SliderHeight"
+                Maximum="240"
+                Minimum="35"
+                Value="{Binding Height}" />
+        </StackLayout>
+
+        <StackLayout>
+            <Label 
+                Style="{StaticResource TitleStyle}"
+                Text="Peso"/>
+            <Label
+                Style="{StaticResource ValueStyle}"
+                Text="{Binding Source= {x:Reference SliderWeight}, Path= Value, StringFormat= '{0:F0} kg'}" />
+            <Slider
+                x:Name="SliderWeight"
+                Maximum="320"
+                Minimum="35"
+                Value="{Binding Weight}" />
+        </StackLayout>
+
+        <StackLayout>
+            <Label
+                Style="{StaticResource StyleLabel}"
+                Text="Tu IMC es" />
+            <Label
+                Style="{StaticResource StyleLabel}"
+                Text="{Binding Imc}" />
+            <Label
+                Style="{StaticResource StyleLabel}"
+                Text="{Binding Classification}" />
+        </StackLayout>
+
+    </FlexLayout>
+
+</ContentPage>
